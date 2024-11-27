@@ -7,7 +7,6 @@ import java.time.Duration;
 
 public class BaseTest {
 
-
     public static WebDriver driver;
 
     public void openBrowser(String baseUrl) {

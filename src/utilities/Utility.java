@@ -4,25 +4,20 @@ import browserfactory.BaseTest;
 import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.Select;
 
 public class Utility extends BaseTest {
 
+    /**
+     * This method will click on given locator path
+     */
     public void clickOnElement(By by) {
         WebElement loginLink = driver.findElement(by);
         loginLink.click();
     }
 
-
     /**
-     * This method will get text from element
-     */
-    public String getTextFromElement(By by) {
-        return driver.findElement(by).getText();
-    }
-
-    /**
-     *
      *This method will select dropdown
      */
     public void selectFromDropDown(By by, String text) {
@@ -31,9 +26,28 @@ public class Utility extends BaseTest {
         select.selectByVisibleText(text);
     }
 
-    public void assertMethod(String expected, By by) {
-        String expectedText = "Build your own computer";
-        String actualText = driver.findElement(by).getText();
-        Assert.assertEquals(expectedText, actualText);
+    /**
+     * This method will compare actual result and expected result
+     */
+    public void assertMethod(String expectedText, By by) {
+        Assert.assertEquals(expectedText, driver.findElement(by).getText());
     }
+
+    /**
+     * This method is for hover mouse on element and click it
+     */
+    public void mouseHoverAndClick(By by) {
+        WebElement element = driver.findElement(by);
+        new org.openqa.selenium.interactions.Actions(driver).moveToElement(element).click().perform();
+    }
+
+    /**
+     * This method is for hover mouse on element
+     */
+    public void mouseToElement(By by) {
+        Actions actions = new Actions(driver);
+        WebElement element = driver.findElement(by);
+        actions.moveToElement(element).perform();
+    }
+
 }
